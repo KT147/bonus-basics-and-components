@@ -17,12 +17,15 @@ function ExpenseForm({onSaveExpenseData}) {
   }
 
   function dateChangeHandler(event) {
-    setData((prevState) => ({ ...prevState, date: new Date(event.target.value) }));
+    setData((prevState) => ({ ...prevState, date: event.target.value}));
   }
 
   function submitHandler(event) {
     event.preventDefault()
-    const expenseData = data
+    const expenseData = {
+      ...data,
+      date: new Date(data.date), // <-- teisenda string Date objektiks siin
+    };
     setData({
       title:'',
       amount:'',
